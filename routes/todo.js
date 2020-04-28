@@ -5,7 +5,7 @@ const todoModel = require('../models/todo.model');
 
 router.get('/', async (req, res, next) => {
     try {
-        let result = await todoModel.find();
+        let result = await todoModel.find({userId: undefined});
         res.send(result);
     } catch (e) {
         res.send(e);
@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     if (req.params.id) {
         let id = req.params.id;
-        todoModel.findOne({_id: id})
+        todoModel.find({userId: id})
             .then(doc => {
                 if (!doc) {
                     return res.status(500);
