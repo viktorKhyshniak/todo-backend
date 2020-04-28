@@ -16,13 +16,10 @@ const authRouter = require('./routes/auth/auth');
 const app = express();
 
 
-mongoose.connect(process.env.DB_CONNECT,
+mongoose.connect(process.env.REMOTE_DB_CONNECT,
     { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false },
-    () => { console.log('connected to DB :', process.env.DB_CONNECT)
+    () => { console.log('connected to DB :', process.env.REMOTE_DB_CONNECT)
     });
-
-const conn = mongoose.createConnection(process.env.DB_CONNECT,
-    {useUnifiedTopology: true, useNewUrlParser: true })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
